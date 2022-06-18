@@ -1,0 +1,25 @@
+.app{
+    height: 100vh;
+
+    .sections{
+        width: 100%;
+        height: calc(100vh - 70px);
+        background: lightsalmon;
+        position: relative;
+        top: 70px;
+        scroll-behavior: smooth;
+        //must be used on scroll container
+        scroll-snap-type: y mandatory; //snaps to nearest element on scroll, proximity is another option
+        scrollbar-width: none; //hides scroll bar for firefox
+        //note that web-kit scroll-bar should be removed at some point because of compatibilty issues
+        &::-webkit-scrollbar{ //& means removed and repalced with the parent selector.
+            display: none;
+        }
+
+        > *{
+            width: 100vw;
+            height: calc(100vh - 70px);
+            scroll-snap-align: start; //must apply to child within the scroll container
+        }
+    }
+}

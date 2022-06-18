@@ -1,0 +1,93 @@
+@import "../../global.scss"; //@import just includes the contents of another file, just scss syntax
+
+.topbar{
+    width: 100%;
+    height: 70px;
+    background-color: white; //mainColor is a variable defined in global.scss
+    color: $mainColor;
+    position: fixed;
+    top: 0;
+    z-index: 2;
+    transition: all 1s ease; //causes transition from topbar to topbar open to take 1 second
+
+    .wrapper{
+        align-items: center;
+        padding: 10px 30px;
+        display: flex;
+        justify-content: space-between;
+
+        .left{
+            display: flex;
+            align-items: center;
+
+            .logo{
+                font-size: 40px;
+                font-weight: 700;
+                text-decoration: none; //gets rid of underline on link
+                color: inherit; //inherits color from .topbar parent
+            }
+
+            .itemContainer{
+                display: flex;
+                align-items: center;
+                margin-left: 30px;
+
+                .icon{
+                    font-size: 30px;
+                    margin-right: 8px;
+                }
+
+                .span{
+                    font-size: 17px;
+                    font-weight: 500;
+                }
+            }
+        }
+
+        .right{
+
+            .hamburger{
+                width: 32px;
+                height: 25px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                cursor: pointer;
+
+                span{
+                    width: 100%;
+                    height: 3px;
+                    background-color: $mainColor;
+                    transform-origin: left; //causes rotation to happen from the left
+                    transition: all 2s ease; //slows the animation
+                }
+            }
+        }
+    }
+
+    &.active{ //if the the class is topbar active then background color is mainColor, if class is just topbar then background is white
+        background-color: $mainColor;
+        color: white;
+
+        //TODO: make left side of span be square after transform
+        .hamburger{
+
+            span{
+                &:first-child{
+                    background-color: white;
+                    transform: rotate(45deg); //rotate top bar down 45 degress
+                }
+
+                &:nth-child(2){
+                    opacity: 0; //make the middle bar invisible
+                }
+
+                &:last-child{
+                    background-color: white;
+                    transform: rotate(-45deg); //rotate bottom bar up 45 degress
+                }
+            }
+        }
+    }
+
+}
